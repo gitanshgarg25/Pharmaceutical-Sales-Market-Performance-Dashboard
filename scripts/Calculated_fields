@@ -1,0 +1,34 @@
+// ==========================================
+// 1. Field Name: Cost per Claim
+// Description: Average gross cost incurred per prescription claim filled.
+// ==========================================
+SUM([Total_Spending]) / SUM([Total_Claims])
+
+
+// ==========================================
+// 2. Field Name: Cost per Dosage Unit
+// Description: Average cost per individual dosage unit dispensed.
+// ==========================================
+SUM([Total_Spending]) / SUM([Dosage_Units])
+
+
+// ==========================================
+// 3. Field Name: Total Market Spend (Fixed LOD)
+// Description: Establishes a static baseline for market share calculations.
+// ==========================================
+{FIXED [Date], [State] : SUM([Total_Spending])}
+
+
+// ==========================================
+// 4. Field Name: Drug Market Share %
+// Description: Dynamic market share percentage calculated against total market baseline.
+// ==========================================
+SUM([Total_Spending]) / SUM([Total Market Spend (Fixed LOD)])
+
+
+// ==========================================
+// 5. Field Name: YoY Spending Growth % 
+// Description: Year-over-Year spending growth (requires Date in the view).
+// ==========================================
+(ZN(SUM([Total_Spending])) - LOOKUP(ZN(SUM([Total_Spending])), -1)) 
+/ ABS(LOOKUP(ZN(SUM([Total_Spending])), -1))
