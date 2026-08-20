@@ -3,7 +3,7 @@
 -- Core Analytical Queries
 -- Source: CMS Medicare Part D public spending data (2022)
 -- =========================================================
-
+-- Run against the schema defined in schema.sql
 -- 1. COST PER CLAIM BY DRUG
 -- Measures unit economics / efficiency per drug — a core pharma
 -- commercial analytics metric (lower cost/claim = more efficient
